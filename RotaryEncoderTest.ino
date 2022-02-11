@@ -3,8 +3,8 @@
 //need to change names of updateEncoder() function and variables - got that part online
 
 //defining pins
-#define CLK 2 //clock pin on rotary encoder
-#define DT 3 //pin for direction of rotary encoder
+#define CLK 3 //clock pin on rotary encoder
+#define DT 20 //pin for direction of rotary encoder
 #define SW 18 //button on rotary encoder
 #define LED_Others 9 //for any beat that is not beat 1
 #define LED_Beat1 10 //for beat 1
@@ -44,8 +44,7 @@ void setup() {
   pinMode(dirPin, OUTPUT);
   Serial.begin(9600);
 
-  // Read the initial state of CLK
-  lastStateCLK = digitalRead(CLK);
+
   
   // Call updateEncoder() and timeSigUpdatewhen any high/low changed seen
   // on interrupt 0 (pin 2), or interrupt 1 (pin 3), interrup 5 (pin 18), interrupt 4 (pin 19)
@@ -53,6 +52,10 @@ void setup() {
   attachInterrupt(1, updateEncoder, CHANGE);
   attachInterrupt(5, updateEncoder, CHANGE); //encoder button interrupt
   attachInterrupt(4, timeSigUpdate, CHANGE); //time sig button interrupt
+
+  // Read the initial state of CLK
+  lastStateCLK = digitalRead(CLK);
+
 }
 
 void loop() {
@@ -83,7 +86,7 @@ void tempo()
     }
 
     
-    motor();
+    //motor();
     
     //if on beat 1
     if(count == 0)
@@ -114,7 +117,7 @@ void tempo()
   
 }
 
-void motor()
+/*void motor()
 {
   // clockwise
     digitalWrite(dirPin, HIGH);
@@ -140,7 +143,7 @@ void motor()
       digitalWrite(stepPin, LOW);
       delayMicroseconds(delay_val);
   }
-}
+}*/
 
 
 //interrupt function for encoder
