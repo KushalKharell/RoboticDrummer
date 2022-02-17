@@ -1,6 +1,4 @@
-// Rotary Encoder Inputs
 
-//need to change names of updateEncoder() function and variables - got that part online
 
 //defining pins
 #define CLK 3 //clock pin on rotary encoder
@@ -23,8 +21,10 @@ String currentDir =""; //current direction of enncoder
 unsigned long lastButtonPressR = 0; //last press of rotary encoder button
 unsigned long lastButtonPressB = 0; //last press of time signature button
 
-int Tempo = 120; //holds the tempo
-int delay_val = 500; //initial delay in tempo of 120 (check)
+int Tempo = 120; //holds the starting tempo
+int delay_val_4 = 500; //initial delay for tempo of 120 and quarter note gets beat (x/4 time)
+int delay_val6_8 = 167; //initial delay for tempo of 120 and 1/8 note triplet gets beat (x/8 time)
+int delay_val = delay_val_4; //holds value for LED's
 int beatsPerMeasure = 4; //starting beats per measure
 int count = 0; //counter for number of beats played in a measure
 String timeSigValues[4] = {"4/4", "6/8", "3/4", "2/4"}; //time signature values - might be needed for lcd
@@ -72,15 +72,19 @@ void tempo()
     switch(timeSig)
     {
       case 0: //4/4 time
+        delay_val = delay_val_4;
         beatsPerMeasure = 4;
         break;
       case 1: //6/8 time
+        delay_val = delay_val6_8;
         beatsPerMeasure = 6;
         break;
       case 2: //3/4 time
+        delay_val = delay_val_4;
         beatsPerMeasure = 3;
         break;
       case 3: //2/4 time
+        delay_val = delay_val_4;
         beatsPerMeasure = 2;
          break;
     }
@@ -91,6 +95,9 @@ void tempo()
     //if on beat 1
     if(count == 0)
     {
+      Serial.print("\n delay_val is: ");
+      Serial.print(delay_val);
+      Serial.print("\n\n");
       digitalWrite(LED_Beat1, HIGH);
       delay(50);
       digitalWrite(LED_Beat1, LOW);
@@ -157,33 +164,63 @@ void updateEncoder(){
 
     // If the DT state is different than the CLK state then
     // the encoder is rotating CCW so decrement
-    if (digitalRead(DT) != currentStateCLK) {
-      rotaryCounter--;
-      currentDir ="CCW";
-      Tempo -= 1; //decrement the tempo by 1
-      delay_val = 60000/Tempo; //get new delay value
-      Serial.print("Tempo:" );
-      Serial.print(Tempo);
+    if ((digitalRead(DT) == currentStateCLK) && (Tempo > 60))
+    {
+        rotaryCounter--;
+        currentDir ="CCW";
 
+        Tempo -= 1; //decrement the tempo by 1
 
-      
+        delay_val_4 = 60000/Tempo; //get new delay value for x/4 time sig
+        delay_val6_8 = 20040/Tempo; //get new delay value for x/8 time sig
+
+       /* if(timeSig != 1)
+        {
+          delay_val = delay_val_4;
+        }
+        else
+        {
+          delay_val = delay_val6_8;
+        }*/
     } 
-    else 
+    
+    else if((digitalRead(DT) != currentStateCLK) && (Tempo < 250))
     {
       // Encoder is rotating CW so increment
-      rotaryCounter++;
-      currentDir ="CW";
-      Tempo += 1; //increment the tempo by 1
-      delay_val = 60000/Tempo; // get the new delay value
-      Serial.print("Tempo:" );
-      Serial.print(Tempo);
+        rotaryCounter++;
+        currentDir ="CW";
+
+        Tempo += 1;
+        delay_val_4 = 60000/Tempo; //get new delay value fpr x/4 time sig
+        delay_val6_8 = 20040/Tempo; //get new delay value for x/8 time sig
+        
+       /* if(timeSig != 1)
+        {
+          delay_val = delay_val_4;
+        }
+        else
+        {
+          delay_val = delay_val6_8;
+        }*/
       
     }
-
+    Serial.print("Tempo:" );
+    Serial.print(Tempo);
     Serial.print("Direction: ");
     Serial.print(currentDir);
     Serial.print(" | rotaryCounter: ");
     Serial.println(rotaryCounter);
+    Serial.print("\ntime signature is: ");
+    Serial.print(timeSig);
+    Serial.print("\n");
+
+    Serial.print("\n");
+    Serial.print("6/8 delay: ");
+    Serial.print(delay_val6_8);
+    Serial.print("\n");
+    Serial.print("4/4 delay: ");
+    Serial.print(delay_val_4);
+    Serial.print("\n\n");
     
   }
 
