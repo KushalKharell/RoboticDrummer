@@ -11,7 +11,7 @@
 //motor pins
 #define dirPin 4
 #define stepPin 5
-#define stepsPerRevolution 600
+#define stepsPerRevolution 240
 
 int rotaryCounter = 0; //for keeping track of rotary position
 int currentStateCLK; //rotary CLK pin state
@@ -58,8 +58,10 @@ void setup() {
 
 }
 
-void loop() {
+void loop() 
+{
     tempo(); //calling tempo function 
+    motor();
 }
 
 //LED's light up to tempo - will control motors here
@@ -88,9 +90,6 @@ void tempo()
         beatsPerMeasure = 2;
          break;
     }
-
-    
-    //motor();
     
     //if on beat 1
     if(count == 0)
@@ -124,7 +123,7 @@ void tempo()
   
 }
 
-/*void motor()
+void motor()
 {
   // clockwise
     digitalWrite(dirPin, HIGH);
@@ -150,7 +149,7 @@ void tempo()
       digitalWrite(stepPin, LOW);
       delayMicroseconds(delay_val);
   }
-}*/
+}
 
 
 //interrupt function for encoder
