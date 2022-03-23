@@ -2,7 +2,7 @@
 
 //defining pins
 #define CLK 3 //clock pin on rotary encoder
-#define DT 20 //pin for direction of rotary encoder
+#define DT 6 //pin for direction of rotary encoder
 #define SW 18 //button on rotary encoder
 #define LED_Others 9 //for any beat that is not beat 1
 #define LED_Beat1 10 //for beat 1
@@ -11,7 +11,7 @@
 //motor pins
 #define dirPin 4
 #define stepPin 5
-#define stepsPerRevolution 240
+#define stepsPerRevolution 600
 
 int rotaryCounter = 0; //for keeping track of rotary position
 int currentStateCLK; //rotary CLK pin state
@@ -24,7 +24,7 @@ unsigned long lastButtonPressB = 0; //last press of time signature button
 int Tempo = 120; //holds the starting tempo
 int delay_val_4 = 500; //initial delay for tempo of 120 and quarter note gets beat (x/4 time)
 int delay_val6_8 = 167; //initial delay for tempo of 120 and 1/8 note triplet gets beat (x/8 time)
-int delay_val = delay_val_4; //holds value for LED's
+int delay_val = delay_val_4; //this should be global - holds  the delay for the current time sig/tempo
 int beatsPerMeasure = 4; //starting beats per measure
 int count = 0; //counter for number of beats played in a measure
 String timeSigValues[4] = {"4/4", "6/8", "3/4", "2/4"}; //time signature values - might be needed for lcd
@@ -48,7 +48,7 @@ void setup() {
   
   // Call updateEncoder() and timeSigUpdatewhen any high/low changed seen
   // on interrupt 0 (pin 2), or interrupt 1 (pin 3), interrup 5 (pin 18), interrupt 4 (pin 19)
-  attachInterrupt(0, updateEncoder, CHANGE);
+  //attachInterrupt(0, updateEncoder, CHANGE);
   attachInterrupt(1, updateEncoder, CHANGE);
   attachInterrupt(5, updateEncoder, CHANGE); //encoder button interrupt
   attachInterrupt(4, timeSigUpdate, CHANGE); //time sig button interrupt
@@ -61,7 +61,7 @@ void setup() {
 void loop() 
 {
     tempo(); //calling tempo function 
-    motor();
+    //motor();
 }
 
 //LED's light up to tempo - will control motors here
@@ -140,13 +140,13 @@ void motor()
 
   //counter-clockwise
     digitalWrite(dirPin, LOW);
-
+delay(delay_val);
   for (int i = 0; i < stepsPerRevolution; i++) 
   {
       // These four lines result in 1 step:
-      digitalWrite(stepPin, HIGH);
-      delayMicroseconds(delay_val);
       digitalWrite(stepPin, LOW);
+      delayMicroseconds(delay_val);
+      digitalWrite(stepPin, HIGH);
       delayMicroseconds(delay_val);
   }
 }
