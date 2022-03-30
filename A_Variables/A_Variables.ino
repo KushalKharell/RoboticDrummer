@@ -2,33 +2,42 @@
 #include <LiquidCrystal_I2C.h>
 #include <Wire.h> 
 
-#define CLK 3 //clock pin on rotary encoder
-#define DT 6 //pin for direction of rotary encoder
-#define SW 18 //button on rotary encoder
-#define LED_Others 9 //for any beat that is not beat 1
+#define CLK 3 //clock pin on rotary encoder - interrupt pin
+#define DT 2 //pin for direction of rotary encoder
+//#define SW 18 //button on rotary encoder
+#define LED_Others 11 //for any beat that is not beat 1
 #define LED_Beat1 10 //for beat 1
 #define buttonPin 19 //button to change time signature
 #define timeSigButton 1
 
 
 //old motor code variables
+/*
 //motor pins
 #define dirPin 4
 #define stepPin 5
 #define stepsPerRevolution 240
+*/
 
-/*new motor code variables
-#define dirPinPos 2
-#define dirPinNeg 4
-#define stepPin 3
-#define stepsPerRevolution 1500*/
+//hi hat motor code variables
+#define HiHat_dirPinPos 4
+#define HiHat_dirPinNeg 5
+#define HiHat_stepPin 6
+
+//Kick motor code variables
+#define Kick_dirPinPos 7
+#define Kick_dirPinNeg 8
+#define Kick_stepPin 9
+
+//step size for motors
+#define stepsPerRevolution 1500
 
 //sda = 20, scl = 21 for mega board i2c module
 LiquidCrystal_I2C lcd(0x27, 20, 4); //20x4 display, defining the lcd
 bool Hi_Hat_Sig = 0; //signal for hi hat to be turned on or off. it is off initially
-int Drums_Sig = 0; //Other drums with actuators are turned OFF initially
+int Kick_Sig = 0; //Other drums with actuators are turned OFF initially
 String Hi_Hat_Status; //string for lcd
-String Drums_Status; //string for lcd
+String Kick_Status; //string for lcd
 int Fun_called = 1; //keeping track of the lcd calls
 String encdir ="";
 String Curr_Selection = "<-";

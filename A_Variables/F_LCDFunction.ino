@@ -50,15 +50,15 @@ void LCD_Menu()
     }
 
 //commented out because this will be changed later
-  if(Drums_Sig == 1)
+  if(Kick_Sig == 1)
   {
-      Drums_Status = "ON "; 
+      Kick_Status = "ON "; 
     }
     
     else
     {
       
-      Drums_Status = "OFF"; 
+      Kick_Status = "OFF"; 
     }
   lcd.setCursor(12,0);           
   lcd.print("Hi-Hat");
@@ -80,9 +80,9 @@ void LCD_Menu()
   
   //commented out because this will be changed later
   lcd.setCursor(12,2);           
-  lcd.print("Drums");
+  lcd.print("Kick");
   lcd.setCursor(12,3);           
-  lcd.print(Drums_Status);
+  lcd.print(Kick_Status);
   
    if(Fun_called == 4)
    { //if the selector is on tempo

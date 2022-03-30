@@ -133,9 +133,9 @@ void updateEncoder(){
         //if encoder is rotated CCW or CW, change state of Drums_Sig
       if ((digitalRead(DT) == currentStateCLK) || (digitalRead(DT) != currentStateCLK))
       {
-        Drums_Sig = !Drums_Sig; //invert Drums_Sig
-        Serial.print("Drums Sig is: ");
-        Serial.print(Drums_Sig);
+        Kick_Sig = !Kick_Sig; //invert Drums_Sig
+        Serial.print("Kick Sig is: ");
+        Serial.print(Kick_Sig);
         Serial.print("\n\n");
       }
 

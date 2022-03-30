@@ -23,11 +23,11 @@
 #define stepPin 5
 #define stepsPerRevolution 240
 
-/*new motor code variables
+new motor code variables
 #define dirPinPos 2
 #define dirPinNeg 4
 #define stepPin 3
-#define stepsPerRevolution 1500*/
+#define stepsPerRevolution 1500
 
 LiquidCrystal_I2C lcd(0x27, 20, 4); //20x4 display, defining the lcd
 bool Hi_Hat_Sig = 0; //signal for hi hat to be turned on or off. it is off initially

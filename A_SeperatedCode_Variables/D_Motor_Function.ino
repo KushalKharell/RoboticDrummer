@@ -4,6 +4,8 @@ void motor()
   {
     
   
+    //LED Test Code
+    /*
   if(count == 0)
     {
       Serial.print("\n delay_val is: ");
@@ -30,7 +32,26 @@ void motor()
       {
         count = 0;
       }
+  */
+
+  
+    //motor code
+     digitalWrite(dirPinPos, LOW);
+     Serial.print("stepper 1 rev quickly counterclockwise");
+     Serial.print("\n");
+  // Spin the stepper motor 1 revolution quickly:
+     for (int i = 0; i < stepsPerRevolution; i++) 
+     {
+       // These four lines result in 1 step:
+       digitalWrite(stepPin, HIGH);
+       delayMicroseconds(100);
+       digitalWrite(stepPin, LOW);
+       delayMicroseconds(100);
+     }
+
   }
+
+  
 }
 
 //{

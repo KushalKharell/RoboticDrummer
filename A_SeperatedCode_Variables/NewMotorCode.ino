@@ -6,7 +6,7 @@
 //-----------------
 
 
-/*
+
 //void loop() {
   // Set the spinning direction clockwise:
   
@@ -26,7 +26,7 @@ Serial.print("\n");
   }
   //---------------------------------
 */
-/*
+
   digitalWrite(dirPinPos1, LOW);
 
   // Spin the stepper motor 1 revolution slowly:
@@ -59,9 +59,9 @@ Serial.print("\n");
   
 
   delay(1000); //delay set 50 ms
-*/
+
   //--------------------------------
-/*
+
    digitalWrite(dirPinPos1, HIGH);
 Serial.print("stepper 1 rev quickly counterclockwise");
 Serial.print("\n");
@@ -73,10 +73,10 @@ Serial.print("\n");
     digitalWrite(stepPin1, HIGH);
     delayMicroseconds(100);
   }
-*/
+
 
   
-/*
+
 
   
   delay(1000);
@@ -111,5 +111,5 @@ Serial.print("\n");
   }
 
   delay(1000);
-  */
+  
 //}

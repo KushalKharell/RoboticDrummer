@@ -1,10 +1,11 @@
 void motor()
 {
-  //if the hi-hat selection is set to "ON" (Hi_Hat_Sig is 1)
+  //if the hi-hat selection is set to "ON" (Hi_Hat_Sig is 1), turn motor on
   if(Hi_Hat_Sig == 1)
   {
     
-  
+    //LED Testing - uncomment to test tempo with LED's
+    /*
     if(count == 0)
       {
         Serial.print("\n delay_val is: ");
@@ -31,7 +32,43 @@ void motor()
       {
         count = 0;
       }
+
+   */
+   
+      //Hi Hat motor code
+      digitalWrite(HiHat_dirPinPos, LOW);
+      Serial.print("stepper 1 rev quickly counterclockwise");
+      Serial.print("\n");
+    // Spin the stepper motor 1 revolution quickly:
+      for (int i = 0; i < stepsPerRevolution; i++) 
+      {
+        // These four lines result in 1 step:
+        digitalWrite(HiHat_stepPin, HIGH);
+        delayMicroseconds(delay_val);
+        digitalWrite(HiHat_stepPin, LOW);
+        delayMicroseconds(delay_val);
+      }
+
+      
   }
+
+  //if the kick selection is set to "ON" (Kick_Sig is 1), turn motor on
+ if(Kick_Sig == 1)
+ {
+      digitalWrite(Kick_dirPinPos, LOW);
+      Serial.print("stepper 1 rev quickly counterclockwise");
+      Serial.print("\n");
+    // Spin the stepper motor 1 revolution quickly:
+      for (int i = 0; i < stepsPerRevolution; i++) 
+      {
+        // These four lines result in 1 step:
+        digitalWrite(Kick_stepPin, HIGH);
+        delayMicroseconds(delay_val);
+        digitalWrite(Kick_stepPin, LOW);
+        delayMicroseconds(delay_val);
+      }
+ }
+ 
 }
 
 //{
