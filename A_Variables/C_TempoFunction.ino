@@ -12,8 +12,8 @@ void timeSigTempo()
 
     
     //updating tempo
-    delay_val_4 = (60000/Tempo)-timeToRun; //subtracting time for LCD_Menu() to run to get accurate tempo
-    delay_val6_8 = (20040/Tempo)-timeToRun; //subtracting time for LCD_Menu() to run to get accurate tempo
+    //delay_val_4 = (60000/Tempo)-timeToRun; //subtracting time for LCD_Menu() to run to get accurate tempo //try changing 60000 to 37500 -> x*75 = 500-> 37500
+    delay_val6_8 = (20040/Tempo)-timeToRun; //subtracting time for LCD_Menu() to run to get accurate tempo //try changing to 12525 -> x*12525 = 167-> 12525
 
   //Determine the appropriate delay value based on the selected time signature and tempo
     switch(timeSig)
@@ -38,6 +38,7 @@ void timeSigTempo()
 
     //call motor() function
       motor();
+      //KickMotor();
 
   
 }

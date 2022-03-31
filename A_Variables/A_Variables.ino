@@ -25,12 +25,12 @@
 #define HiHat_stepPin 6
 
 //Kick motor code variables
-#define Kick_dirPinPos 7
-#define Kick_dirPinNeg 8
-#define Kick_stepPin 9
+#define Kick_dirPinPos 49
+#define Kick_dirPinNeg 48
+#define Kick_stepPin 50
 
 //step size for motors
-#define stepsPerRevolution 1500
+#define stepsPerRevolution 750 //for 120bpm
 
 //sda = 20, scl = 21 for mega board i2c module
 LiquidCrystal_I2C lcd(0x27, 20, 4); //20x4 display, defining the lcd
@@ -54,7 +54,7 @@ String currentDir =""; //current direction of enncoder
 unsigned long lastButtonPressR = 0; //last press of rotary encoder button
 unsigned long lastButtonPressB = 0; //last press of time signature button
 
-int Tempo = 120; //holds the starting tempo
+int Tempo = 75; //holds the starting tempo - based on step size
 int delay_val_4 = 500; //initial delay for tempo of 120 and quarter note gets beat (x/4 time)
 int delay_val6_8 = 167; //initial delay for tempo of 120 and 1/8 note triplet gets beat (x/8 time)
 int delay_val = delay_val_4; //holds value for LED's
