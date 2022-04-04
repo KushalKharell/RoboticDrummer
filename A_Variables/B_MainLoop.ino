@@ -88,17 +88,7 @@ void loop()
       buttonUpdate = false;
     }
   }
-
-  /* timeBeginLCD = millis(); //record current time before LCD_Menu()
-   LCD_Menu(); //calling the lcd
-   timeEndLCD = millis(); //record current time after LCD_Menu()
-   timeToRunLCD = timeEndLCD - timeBeginLCD; //determine time between timeEnd and timeBegin. Subtracted from tempo calculations in timeSignature function
-  */
-
   
-
-
-
    timeSigTempo(); //calling tempo function 
    
    motor();

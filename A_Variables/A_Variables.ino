@@ -44,17 +44,8 @@ String encdir ="";
 String Curr_Selection = "<-";
 bool lcdChange = false; 
 bool buttonUpdate = false;
-//for LCD_Menu() timer
 
-unsigned long timeBeginLCD; //holds time at start of LCD_Menu()
-unsigned long timeEndLCD; //holds time at end of LCD_Menu()
-unsigned long timeToRunLCD = 0; //holds difference between timeBegin and timeEnd
-
-
-unsigned long timeBeginMotor; //holds time at start of LCD_Menu()
-unsigned long timeEndMotor; //holds time at end of LCD_Menu()
-unsigned long timeToRunMotor = 0; //holds difference between timeBegin and timeEnd
-
+//timers - to eliminate use of delay() function
 unsigned long timeBeginHiHat_CCW; //holds time at start of LCD_Menu()
 unsigned long timeEndHiHat_CCW; //holds time at end of LCD_Menu()
 unsigned long timeToRunHiHat_CCW = 0; //holds difference between timeBegin and timeEnd
@@ -70,6 +61,7 @@ unsigned long timeToRunKick = 0; //holds difference between timeBegin and timeEn
 unsigned long currentTime;
 unsigned long stepInterval = 1200;
 
+//for rotary encoder - in updateEncoder() function
 int rotaryCounter = 0; //for keeping track of rotary position
 int currentStateCLK; //rotary CLK pin state
 int lastStateCLK; //last state of CLK pin
@@ -78,6 +70,7 @@ String currentDir =""; //current direction of enncoder
 unsigned long lastButtonPressR = 0; //last press of rotary encoder button
 unsigned long lastButtonPressB = 0; //last press of time signature button
 
+//for tempo calculation - timeSigTempo()
 int Tempo = 120; //holds the starting tempo - based on step size
 int delay_val_4 = 500; //initial delay for tempo of 120 and quarter note gets beat (x/4 time)
 int delay_val6_8 = 167; //initial delay for tempo of 120 and 1/8 note triplet gets beat (x/8 time)
