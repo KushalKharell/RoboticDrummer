@@ -25,6 +25,7 @@ void LCD_Menu()
   lcd.print("Time Sig");
   lcd.setCursor(0,3);           
   lcd.print(timeSigValues[timeSig]);
+  
     if(Fun_called == 2)
     { //if the selector is on time sig
 

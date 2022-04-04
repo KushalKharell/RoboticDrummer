@@ -37,24 +37,27 @@
 LiquidCrystal_I2C lcd(0x27, 20, 4); //20x4 display, defining the lcd
 bool Hi_Hat_Sig = 0; //signal for hi hat to be turned on or off. it is off initially
 int Kick_Sig = 0; //Other drums with actuators are turned OFF initially
-String Hi_Hat_Status; //string for lcd
-String Kick_Status; //string for lcd
+String Hi_Hat_Status = "OFF"; //string for lcd
+String Kick_Status = "OFF"; //string for lcd
 int Fun_called = 1; //keeping track of the lcd calls
 String encdir ="";
 String Curr_Selection = "<-";
+bool lcdChange = false; 
+bool buttonUpdate = false;
 //for LCD_Menu() timer
 
-unsigned long timeBegin; //holds time at start of LCD_Menu()
-unsigned long timeEnd; //holds time at end of LCD_Menu()
-unsigned long timeToRun = 0; //holds difference between timeBegin and timeEnd
+unsigned long timeBeginLCD; //holds time at start of LCD_Menu()
+unsigned long timeEndLCD; //holds time at end of LCD_Menu()
+unsigned long timeToRunLCD = 0; //holds difference between timeBegin and timeEnd
+
+
+unsigned long timeBeginMotor; //holds time at start of LCD_Menu()
+unsigned long timeEndMotor; //holds time at end of LCD_Menu()
+unsigned long timeToRunMotor = 0; //holds difference between timeBegin and timeEnd
 
 unsigned long timeBeginHiHat_CCW; //holds time at start of LCD_Menu()
 unsigned long timeEndHiHat_CCW; //holds time at end of LCD_Menu()
 unsigned long timeToRunHiHat_CCW = 0; //holds difference between timeBegin and timeEnd
-
-unsigned long timeBeginHiHat_Switch; //holds time at start of LCD_Menu()
-unsigned long timeEndHiHat_Switch; //holds time at end of LCD_Menu()
-unsigned long timeToSwitch_HiHat = 0; //holds difference between timeBegin and timeEnd
 
 unsigned long timeBeginHiHat_CW; //holds time at start of LCD_Menu()
 unsigned long timeEndHiHat_CW; //holds time at end of LCD_Menu()
@@ -64,8 +67,8 @@ unsigned long timeBeginKick; //holds time at start of LCD_Menu()
 unsigned long timeEndKick; //holds time at end of LCD_Menu()
 unsigned long timeToRunKick = 0; //holds difference between timeBegin and timeEnd
 
-unsigned long currentMillis;
-unsigned long previousMillis = 0;
+unsigned long currentTime;
+unsigned long stepInterval = 1200;
 
 int rotaryCounter = 0; //for keeping track of rotary position
 int currentStateCLK; //rotary CLK pin state

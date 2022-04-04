@@ -31,6 +31,33 @@ void setup() {
   //Setup Serial Monitor
   Serial.begin(9600);
 
+  //LCD Setup
+  lcd.setCursor(0,0);           
+  lcd.print("Tempo");
+  lcd.setCursor(0,1);           
+  lcd.print(Tempo);
+  lcd.setCursor(0,2);           
+  lcd.print("Time Sig");
+  lcd.setCursor(0,3);           
+  lcd.print(timeSigValues[timeSig]);
+  lcd.setCursor(12,0);           
+  lcd.print("Hi-Hat");
+  lcd.setCursor(12,1);           
+  lcd.print(Hi_Hat_Status);
+  lcd.setCursor(12,2);           
+  lcd.print("Kick");
+  lcd.setCursor(12,3);           
+  lcd.print(Kick_Status);
+  lcd.setCursor(4,1);           
+  lcd.print(Curr_Selection);
+  lcd.setCursor(4,3);           
+  lcd.print("  ");
+  lcd.setCursor(16,1);           
+  lcd.print("  ");
+  lcd.setCursor(16,3);           
+  lcd.print("  ");
+  
+
 
   
   // Call updateEncoder(), button() when any high/low changed seen
@@ -47,11 +74,35 @@ void loop()
 {   
 
   //added a timer to figure out how long the LCD_Menu() takes to run for tempo calculation
-   timeBegin = millis(); //record current time before LCD_Menu()
+  if(lcdChange == true || buttonUpdate == true)
+  {
+    LCD_Menu();
+
+    if(lcdChange == true)
+    {
+      lcdChange = false;      
+    }
+
+    if(buttonUpdate == true)
+    {
+      buttonUpdate = false;
+    }
+  }
+
+  /* timeBeginLCD = millis(); //record current time before LCD_Menu()
    LCD_Menu(); //calling the lcd
-   timeEnd = millis(); //record current time after LCD_Menu()
-   timeToRun = timeEnd - timeBegin; //determine time between timeEnd and timeBegin. Subtracted from tempo calculations in timeSignature function
-    
+   timeEndLCD = millis(); //record current time after LCD_Menu()
+   timeToRunLCD = timeEndLCD - timeBeginLCD; //determine time between timeEnd and timeBegin. Subtracted from tempo calculations in timeSignature function
+  */
+
+  
+
+
+
    timeSigTempo(); //calling tempo function 
+   
+   motor();
+
+
 
 }

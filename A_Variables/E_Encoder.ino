@@ -8,7 +8,7 @@ void updateEncoder(){
   // React to only 1 state change to avoid double count
   if (currentStateCLK != lastStateCLK  && currentStateCLK == 1)
   {
-
+    
     // If the DT state is different than the CLK state then
     // the encoder is rotating CCW so decrement
     //Tempo selection
@@ -41,23 +41,8 @@ void updateEncoder(){
           Serial.print("\n\n");
           
       }
-//      Serial.print("\nTempo:" );
-//      Serial.print(Tempo);
-//      Serial.print(" Direction: ");
-//      Serial.print(currentDir);
-//      Serial.print(" | rotaryCounter: ");
-//      Serial.println(rotaryCounter);
-//      Serial.print("\ntime signature is: ");
-//      Serial.print(timeSig);
-//      Serial.print("\n");
-//  
-//      Serial.print("\n");
-//      Serial.print("6/8 delay: ");
-//      Serial.print(delay_val6_8);
-//      Serial.print("\n");
-//      Serial.print("4/4 delay: ");
-//      Serial.print(delay_val_4);
-//      Serial.print("\n\n");
+  
+    
       
     }
   
@@ -168,4 +153,7 @@ void updateEncoder(){
   // Put in a slight delay to help debounce the reading
   delay(1);
   */
+
+  lcdChange = true;
+  
 }
