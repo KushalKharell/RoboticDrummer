@@ -54,9 +54,13 @@ unsigned long timeBeginHiHat_CW; //holds time at start of LCD_Menu()
 unsigned long timeEndHiHat_CW; //holds time at end of LCD_Menu()
 unsigned long timeToRunHiHat_CW = 0; //holds difference between timeBegin and timeEnd
 
-unsigned long timeBeginKick; //holds time at start of LCD_Menu()
-unsigned long timeEndKick; //holds time at end of LCD_Menu()
-unsigned long timeToRunKick = 0; //holds difference between timeBegin and timeEnd
+unsigned long timeBeginKick_CCW; //holds time at start of LCD_Menu()
+unsigned long timeEndKick_CCW; //holds time at end of LCD_Menu()
+unsigned long timeToRunKick_CCW = 0; //holds difference between timeBegin and timeEnd
+
+unsigned long timeBeginKick_CW; //holds time at start of LCD_Menu()
+unsigned long timeEndKick_CW; //holds time at end of LCD_Menu()
+unsigned long timeToRunKick_CW = 0; //holds difference between timeBegin and timeEnd
 
 unsigned long currentTime;
 unsigned long stepInterval = 1200;

@@ -56,10 +56,7 @@ void setup() {
   lcd.print("  ");
   lcd.setCursor(16,3);           
   lcd.print("  ");
-  
-
-
-  
+ 
   // Call updateEncoder(), button() when any high/low changed seen
   // on interrupt 0 (pin 2), or interrupt 1 (pin 3), interrup 5 (pin 18), interrupt 4 (pin 19)
   attachInterrupt(1, updateEncoder, CHANGE); //encoder clk
