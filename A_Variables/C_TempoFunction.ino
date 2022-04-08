@@ -21,18 +21,22 @@ void timeSigTempo()
       case 0: //4/4 time
         delay_val = delay_val_4;
         beatsPerMeasure = 4;
+        motor_4Time();
         break;
       case 1: //6/8 time
         delay_val = delay_val6_8;
         beatsPerMeasure = 6;
+        motor_3Time();
         break;
       case 2: //3/4 time
         delay_val = delay_val_4;
         beatsPerMeasure = 3;
+        motor_3Time();
         break;
       case 3: //2/4 time
         delay_val = delay_val_4;
         beatsPerMeasure = 2;
+        motor_4Time();
         break;
     }
 

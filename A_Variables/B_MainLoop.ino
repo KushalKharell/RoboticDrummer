@@ -71,10 +71,15 @@ void loop()
 {   
 
   //added a timer to figure out how long the LCD_Menu() takes to run for tempo calculation
+      Serial.print("LCD Change is: ");
+      Serial.print(lcdChange);
+    Serial.print("\n\n");
+          Serial.print("Time Sig is: ");
+      Serial.print(timeSig);
+    Serial.print("\n\n");
   if(lcdChange == true || buttonUpdate == true)
   {
     LCD_Menu();
-
     if(lcdChange == true)
     {
       lcdChange = false;      
@@ -88,8 +93,6 @@ void loop()
   
    timeSigTempo(); //calling tempo function 
    
-   motor();
-
 
 
 }

@@ -10,15 +10,6 @@
 #define buttonPin 19 //button to change time signature
 #define timeSigButton 1
 
-
-//old motor code variables
-/*
-//motor pins
-#define dirPin 4
-#define stepPin 5
-#define stepsPerRevolution 240
-*/
-
 //hi hat motor code variables
 #define HiHat_dirPinPos 4
 #define HiHat_dirPinNeg 5

@@ -66,12 +66,13 @@ void updateEncoder(){
           {
             timeSig = 3;
           }
-          Serial.print(timeSig);
+          Serial.print("DECREASE");
           Serial.print("\n\n");
         
       } 
       
       //if encoder is rotated counterclockwise, round robin backwards through time sig options
+      //for some reason it's not updating correctly on the LCD or timeSig when moving CW - check this
       else if(digitalRead(DT) != currentStateCLK)
       {
         // Encoder is rotating CW so increment
@@ -79,14 +80,14 @@ void updateEncoder(){
           currentDir ="CW";
           timeSig += 1; //increment timeSig by 1
           //check that timeSig is not greater than num elements in timeSigValues array. If so, go back to first element in timeSigValues array
-          if(timeSig >= 4)
+          if(timeSig > 3)
           {
             timeSig = 0;
           }
-          Serial.print(timeSig);
+          Serial.print("INCREASE");
           Serial.print("\n\n");
-  
       }
+      
     }
 
   //if on Hi-Hat selection

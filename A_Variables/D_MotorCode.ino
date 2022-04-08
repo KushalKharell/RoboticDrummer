@@ -1,4 +1,6 @@
-void motor()
+
+//motor code for 4/4 and 2/4 time
+void motor_4Time()
 {
 
   
@@ -45,8 +47,8 @@ if(Hi_Hat_Sig == 0 && Kick_Sig == 1)
    Serial.print("\n\n");
    
    timeBeginHiHat_CW = millis();
-      Serial.print("Beat 1");
-      Serial.print("\n\n");
+    //  Serial.print("Beat 1");
+    //  Serial.print("\n\n");
       
       digitalWrite(HiHat_dirPinPos, LOW); //cw
     // Spin the stepper motor 1 revolution quickly:
@@ -75,8 +77,8 @@ if(Hi_Hat_Sig == 0 && Kick_Sig == 1)
         }
       }
      
-      Serial.print("Beat 2");
-      Serial.print("\n\n");
+    //  Serial.print("Beat 2");
+    //  Serial.print("\n\n");
       timeBeginHiHat_CCW = millis();
       digitalWrite(HiHat_dirPinPos, HIGH); //cw
 //    // Spin the stepper motor 1 revolution quickly:
@@ -192,8 +194,8 @@ if(Hi_Hat_Sig == 0 && Kick_Sig == 1)
    Serial.print("\n\n");
    
    timeBeginHiHat_CW = millis();
-      Serial.print("Beat 1");
-      Serial.print("\n\n");
+     // Serial.print("Beat 1");
+    //  Serial.print("\n\n");
       
       digitalWrite(HiHat_dirPinPos, LOW); //cw
       digitalWrite(Kick_dirPinPos, HIGH);
@@ -225,8 +227,8 @@ if(Hi_Hat_Sig == 0 && Kick_Sig == 1)
         }
       }
      
-      Serial.print("Beat 2");
-      Serial.print("\n\n");
+    //  Serial.print("Beat 2");
+   //   Serial.print("\n\n");
       timeBeginHiHat_CCW = millis();
       digitalWrite(HiHat_dirPinPos, HIGH); //cw
       digitalWrite(Kick_dirPinPos, LOW);
