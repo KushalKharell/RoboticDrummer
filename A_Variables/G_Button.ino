@@ -18,7 +18,7 @@ void button()
 
     
       //if timeSig is greater than number of possible time signatures, reset it back to first time signature option
-      if(Fun_called > 4) 
+      if(Fun_called > 5) 
       {
         Fun_called = 1;
       }

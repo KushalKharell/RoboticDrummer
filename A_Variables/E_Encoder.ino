@@ -1,4 +1,5 @@
 
+
 //interrupt function for encoder
 void updateEncoder(){
   // Read the current state of CLK
@@ -14,10 +15,6 @@ void updateEncoder(){
     //Tempo selection
     if(Fun_called == 1)
     {
-      Serial.print("\n\nFun_called is: ");
-      Serial.print(Fun_called);
-      Serial.print("\n Tempo function");
-
       //If encoder is rotated counterclockwise and not at low limit of 50 bpm
       if ((digitalRead(DT) == currentStateCLK) && (Tempo > 50))
       {
@@ -25,8 +22,7 @@ void updateEncoder(){
           currentDir ="CCW";
   
           Tempo -= 1; //decrement the tempo by 1
-          Serial.print(Tempo);
-          Serial.print("\n\n");
+
 
       } 
 
@@ -37,8 +33,7 @@ void updateEncoder(){
           currentDir ="CW";
   
           Tempo += 1; //increment Tempo by 1
-          Serial.print(Tempo);
-          Serial.print("\n\n");
+
           
       }
   
@@ -50,10 +45,7 @@ void updateEncoder(){
     //if on Time Signature selection
     else if(Fun_called == 2)
     {
-      
-      Serial.print("\n\nFun_called is: ");
-      Serial.print(Fun_called);
-      Serial.print("\n Time Sig function");
+
       
       //if encoder is rotated counterclockwise, round robin backwards through time sig options
       if (digitalRead(DT) == currentStateCLK)
@@ -62,30 +54,36 @@ void updateEncoder(){
           currentDir ="CCW";
           timeSig -= 1; //decrease timeSig value by 1
           //check that timeSig is not a negative number. If so, go back to last element in timeSigValues array
-          if(timeSig < 0)
+          if(timeSig < 0) //so far putting the "=" sign gets you 2/4, but skips the 3/4 completely in CCW
           {
             timeSig = 3;
           }
-          Serial.print("DECREASE");
-          Serial.print("\n\n");
+
         
       } 
       
       //if encoder is rotated counterclockwise, round robin backwards through time sig options
       //for some reason it's not updating correctly on the LCD or timeSig when moving CW - check this
       else if(digitalRead(DT) != currentStateCLK)
-      {
+      {     
+         // timeSig = 0;
         // Encoder is rotating CW so increment
+            
+          //int flag =rotaryCounter; 
           rotaryCounter++; //increase rotaryCounter for CW direction
           currentDir ="CW";
+
+
+          
           timeSig += 1; //increment timeSig by 1
           //check that timeSig is not greater than num elements in timeSigValues array. If so, go back to first element in timeSigValues array
-          if(timeSig > 3)
+          if(timeSig >= 4)
           {
+            
             timeSig = 0;
+           
           }
-          Serial.print("INCREASE");
-          Serial.print("\n\n");
+
       }
       
     }
@@ -93,42 +91,49 @@ void updateEncoder(){
   //if on Hi-Hat selection
     else if(Fun_called == 3)
     {
-      Serial.print("\n\nFun_called is: ");
-      Serial.print(Fun_called);
-      Serial.print("\n hi Hat function");
+
 
       //if encoder is rotated CCW or CW, change state of Hi_Hat_Sig
       if ((digitalRead(DT) == currentStateCLK) || (digitalRead(DT) != currentStateCLK))
       {
         Hi_Hat_Sig = !Hi_Hat_Sig; //invert Hi_Hat Sig
-        Serial.print("Hi_Hat_Sig is: ");
-        Serial.print(Hi_Hat_Sig);
-        Serial.print("\n\n");
+
       }
 
     }
 
-    //if on Drums selection
+    //if on Kick selection
+
+
       else if(Fun_called == 4)
       {
-        Serial.print("\n\nFun_called is: ");
-        Serial.print(Fun_called);
-        Serial.print("\n Drums Hat function");
 
 
-        //if encoder is rotated CCW or CW, change state of Drums_Sig
-      if ((digitalRead(DT) == currentStateCLK) || (digitalRead(DT) != currentStateCLK))
-      {
-        Kick_Sig = !Kick_Sig; //invert Drums_Sig
-        Serial.print("Kick Sig is: ");
-        Serial.print(Kick_Sig);
-        Serial.print("\n\n");
+
+          //if encoder is rotated CCW or CW, change state of Drums_Sig
+        if ((digitalRead(DT) == currentStateCLK) || (digitalRead(DT) != currentStateCLK))
+        {
+          Kick_Sig = !Kick_Sig; //invert Drums_Sig
+  
+        }
       }
+      //if on snare selection
+      else if(Fun_called == 5)
+      {
+
+
+      
+        //if encoder is rotated CCW or CW, change state of Drums_Sig
+        if ((digitalRead(DT) == currentStateCLK) || (digitalRead(DT) != currentStateCLK))
+        {
+          Snare_Sig = !Snare_Sig; //invert Drums_Sig
+  
+        }
 
     }
 
-
   }
+  
 
   // Remember last CLK state
   lastStateCLK = currentStateCLK; 

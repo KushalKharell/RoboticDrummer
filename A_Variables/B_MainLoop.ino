@@ -1,5 +1,5 @@
 void setup() {
-
+//-------------------------------------------------------------------------
   //starting the lcd 
   lcd.init();                    
   lcd.backlight();  
@@ -27,6 +27,8 @@ void setup() {
   pinMode(Kick_stepPin, OUTPUT);
   pinMode(Kick_dirPinPos, OUTPUT);
   pinMode(Kick_dirPinNeg, OUTPUT);
+
+  pinMode(Solonoid1, OUTPUT);
 
   //Setup Serial Monitor
   Serial.begin(9600);
@@ -65,18 +67,19 @@ void setup() {
 
   // Read the initial state of CLK on encoder
   lastStateCLK = digitalRead(CLK);
+
+  //-------------------------------------------------------------------------
+
 }
+
+
 
 void loop() 
 {   
 
   //added a timer to figure out how long the LCD_Menu() takes to run for tempo calculation
-      Serial.print("LCD Change is: ");
-      Serial.print(lcdChange);
-    Serial.print("\n\n");
-          Serial.print("Time Sig is: ");
-      Serial.print(timeSig);
-    Serial.print("\n\n");
+
+  //-----------------------------------------------
   if(lcdChange == true || buttonUpdate == true)
   {
     LCD_Menu();

@@ -20,6 +20,9 @@
 #define Kick_dirPinNeg 48
 #define Kick_stepPin 50
 
+//solonoid pin
+#define Solonoid1 13
+
 //step size for motors
 //#define stepsPerRevolution 800 //for 120bpm and 1600 microsteps
 #define stepsPerRevolution 100 //
@@ -30,6 +33,8 @@ bool Hi_Hat_Sig = 0; //signal for hi hat to be turned on or off. it is off initi
 int Kick_Sig = 0; //Other drums with actuators are turned OFF initially
 String Hi_Hat_Status = "OFF"; //string for lcd
 String Kick_Status = "OFF"; //string for lcd
+int Snare_Sig = 0;
+String Snare_Status = "OFF";
 int Fun_called = 1; //keeping track of the lcd calls
 String encdir ="";
 String Curr_Selection = "<-";
@@ -37,21 +42,14 @@ bool lcdChange = false;
 bool buttonUpdate = false;
 
 //timers - to eliminate use of delay() function
-unsigned long timeBeginHiHat_CCW; //holds time at start of LCD_Menu()
-unsigned long timeEndHiHat_CCW; //holds time at end of LCD_Menu()
-unsigned long timeToRunHiHat_CCW = 0; //holds difference between timeBegin and timeEnd
+unsigned long timeBeginHiHat; //holds time at start of LCD_Menu()
+unsigned long timeEndHiHat; //holds time at end of LCD_Menu()
 
-unsigned long timeBeginHiHat_CW; //holds time at start of LCD_Menu()
-unsigned long timeEndHiHat_CW; //holds time at end of LCD_Menu()
-unsigned long timeToRunHiHat_CW = 0; //holds difference between timeBegin and timeEnd
+unsigned long timeBeginKick; //holds time at start of LCD_Menu()
+unsigned long timeEndKick; //holds time at end of LCD_Menu()
 
-unsigned long timeBeginKick_CCW; //holds time at start of LCD_Menu()
-unsigned long timeEndKick_CCW; //holds time at end of LCD_Menu()
-unsigned long timeToRunKick_CCW = 0; //holds difference between timeBegin and timeEnd
-
-unsigned long timeBeginKick_CW; //holds time at start of LCD_Menu()
-unsigned long timeEndKick_CW; //holds time at end of LCD_Menu()
-unsigned long timeToRunKick_CW = 0; //holds difference between timeBegin and timeEnd
+unsigned long timeBeginSnare; //holds time at start of LCD_Menu()
+unsigned long timeEndSnare; //holds time at end of LCD_Menu()
 
 unsigned long currentTime;
 unsigned long stepInterval = 1200;

@@ -3,10 +3,16 @@
 void LCD_Menu()
 {   
 
+
 //left side 
   lcd.setCursor(0,0);           
   lcd.print("Tempo");
   lcd.setCursor(0,1);           
+
+  if(Tempo < 100)
+  {
+    lcd.print(" ");
+  }
   lcd.print(Tempo);
   
   if(Fun_called == 1)
@@ -97,6 +103,32 @@ void LCD_Menu()
       lcd.print(Curr_Selection);
     }
   
+      
+  //next page
+  //snare
+   if(Fun_called == 5)
+   { //if the selector is on tempo   
+      lcd.clear();
+      lcd.setCursor(0,0);           
+      lcd.print("Snare");
+      lcd.setCursor(0,1);      
+     
+      if(Snare_Sig == 1)
+      {
+          Snare_Status = "ON "; 
+      }
+        
+      else
+      {
+        
+        Snare_Status = "OFF"; 
+      }  
 
+      lcd.print(Snare_Status);
+      lcd.setCursor(16,3);          
+      lcd.print("  ");
+      lcd.setCursor(4,1); 
+      lcd.print(Curr_Selection);
+    }
   
  }
