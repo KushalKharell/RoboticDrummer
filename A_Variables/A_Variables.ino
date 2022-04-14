@@ -21,7 +21,7 @@
 #define Kick_stepPin 50
 
 //solonoid pin
-#define Solonoid1 13
+#define Solonoid1 46
 
 //step size for motors
 //#define stepsPerRevolution 800 //for 120bpm and 1600 microsteps

@@ -2,14 +2,18 @@
 
 void snare()
 {
-  if(Snare_Sig == 0 && Kick_Sig == 1 && Hi_Hat_Sig == 1)
+  if(Snare_Sig == 1 && Kick_Sig == 0 && Hi_Hat_Sig == 0)
   {
-     
      timeBeginSnare = millis();
       //  Serial.print("Beat 1");
       //  Serial.print("\n\n");
         
         digitalWrite(Solonoid1, HIGH); //cw
+
+        while(micros() - currentTime < stepInterval)
+        { 
+            
+        }
      
         digitalWrite(Solonoid1, LOW); //cw
         
@@ -24,8 +28,8 @@ void snare()
             break;
           }
         }
-       
-  
-    
   }
+
+
+  
 }

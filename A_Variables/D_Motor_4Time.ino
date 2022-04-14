@@ -49,14 +49,20 @@ void motor_4Time()
       //  Serial.print("\n\n");
         
         digitalWrite(HiHat_dirPinPos, LOW); //cw
-        //digitalWrite(Solonoid1, HIGH); //cw
+        if(Snare_Sig == 1)
+        {
+          digitalWrite(Solonoid1, LOW); //cw
+        }
       // Spin the stepper motor 1 revolution quickly:
         for (int i = 0; i < stepsPerRevolution; i++) 
         {
           currentTime = micros();
           //delay for step interval
           digitalWrite(HiHat_stepPin, HIGH);
-          digitalWrite(Solonoid1, HIGH); //cw
+          if(Snare_Sig == 1)
+          {
+            digitalWrite(Solonoid1, HIGH); //cw
+          }
           while(micros() - currentTime < stepInterval)
           {
             
@@ -90,12 +96,20 @@ void motor_4Time()
           currentTime = micros();
           //delay for step interval
           digitalWrite(HiHat_stepPin, HIGH);
+          if(Snare_Sig == 1)
+          {
+            digitalWrite(Solonoid1, LOW); //cw
+          }
           while(micros() - currentTime < stepInterval)
           {
             
           }
           //delayMicroseconds(1200);
           digitalWrite(HiHat_stepPin, LOW);
+          if(Snare_Sig == 1)
+          {
+            digitalWrite(Solonoid1, HIGH); //cw
+          }
         }
   
         timeEndHiHat = millis();
@@ -214,6 +228,10 @@ void motor_4Time()
         //delay for step interval
         digitalWrite(HiHat_stepPin, HIGH);
         digitalWrite(Kick_stepPin, LOW);
+        if(Snare_Sig == 1)
+        {
+             digitalWrite(Solonoid1, LOW); //cw
+        }        
         while(micros() - currentTime < stepInterval)
         {
           
@@ -222,6 +240,10 @@ void motor_4Time()
         //delayMicroseconds(1200);
         digitalWrite(HiHat_stepPin, LOW);
         digitalWrite(Kick_stepPin, HIGH);
+        if(Snare_Sig == 1)
+        {
+           digitalWrite(Solonoid1, HIGH); //cw
+        }
       }
       
       timeEndHiHat = millis();

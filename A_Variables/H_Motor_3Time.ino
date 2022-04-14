@@ -48,7 +48,7 @@ void motor_3Time()
               }
               
               digitalWrite(HiHat_stepPin, LOW);
-      
+  
             }
     
           timeEndHiHat = millis();
@@ -73,13 +73,20 @@ void motor_3Time()
               currentTime = micros();
               //delay for step interval
               digitalWrite(HiHat_stepPin, HIGH);
+              if(Snare_Sig == 1)
+              {
+                digitalWrite(Solonoid1, LOW); //cw
+              }              
               while(micros() - currentTime < stepInterval)
               {
                 
               }
               //delayMicroseconds(1200);
               digitalWrite(HiHat_stepPin, LOW);
-      
+              if(Snare_Sig == 1)
+              {
+                digitalWrite(Solonoid1, HIGH); //cw
+              }      
             }
       
             timeEndHiHat = millis();
@@ -212,6 +219,7 @@ void motor_3Time()
               currentTime = micros();
               //delay for step interval
               digitalWrite(Kick_stepPin, HIGH);
+
               while(micros() - currentTime < stepInterval)
               {
                 
@@ -244,14 +252,13 @@ void motor_3Time()
             {
               currentTime = micros();
               //delay for step interval
-              digitalWrite(HiHat_stepPin, HIGH);
+              digitalWrite(HiHat_stepPin, HIGH);            
               while(micros() - currentTime < stepInterval)
               {
                 
               }
               
-              digitalWrite(HiHat_stepPin, LOW);
-      
+              digitalWrite(HiHat_stepPin, LOW);  
             }
     
           timeEndHiHat = millis();
@@ -276,13 +283,20 @@ void motor_3Time()
               currentTime = micros();
               //delay for step interval
               digitalWrite(HiHat_stepPin, HIGH);
+              if(Snare_Sig == 1)
+              {
+                digitalWrite(Solonoid1, LOW); //cw
+              }                
               while(micros() - currentTime < stepInterval)
               {
                 
               }
               //delayMicroseconds(1200);
               digitalWrite(HiHat_stepPin, LOW);
-      
+              if(Snare_Sig == 1)
+              {
+                digitalWrite(Solonoid1, HIGH); //cw
+              }        
             }
       
             timeEndHiHat = millis();
