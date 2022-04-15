@@ -54,6 +54,9 @@ unsigned long timeEndSnare; //holds time at end of LCD_Menu()
 unsigned long currentTime;
 unsigned long stepInterval = 1200;
 
+//testing var
+int var = 0; 
+
 //for rotary encoder - in updateEncoder() function
 int rotaryCounter = 0; //for keeping track of rotary position
 int currentStateCLK; //rotary CLK pin state

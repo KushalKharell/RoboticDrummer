@@ -1,7 +1,14 @@
 
 //motor code for 4/4 and 2/4 time
 void motor_4Time()
-{
+{   
+
+
+  if(Kick_Sig == 0 && Hi_Hat_Sig == 0){
+    var = 1; 
+    }
+
+    
   //if the hi-hat selection is set to "ON" (Hi_Hat_Sig is 1), turn motor on
   if(Hi_Hat_Sig == 1 && Kick_Sig == 0)
   {
@@ -39,7 +46,16 @@ void motor_4Time()
         }
   
      */
-  
+        timeEndHiHat = millis();
+        while(timeEndHiHat - timeBeginHiHat < delay_val)
+        {
+          timeEndHiHat = millis();
+          if(timeEndHiHat - timeBeginHiHat == delay_val)
+          {
+           
+            break;
+          }
+        }
      Serial.print("Delay val in seconds: ");
      Serial.print(delay_val);
      Serial.print("\n\n");
@@ -49,10 +65,10 @@ void motor_4Time()
       //  Serial.print("\n\n");
         
         digitalWrite(HiHat_dirPinPos, LOW); //cw
-        if(Snare_Sig == 1)
-        {
-          digitalWrite(Solonoid1, LOW); //cw
-        }
+//        if(Snare_Sig == 1)
+//        {
+//          digitalWrite(Solonoid1, LOW); //cw
+//        }
       // Spin the stepper motor 1 revolution quickly:
         for (int i = 0; i < stepsPerRevolution; i++) 
         {
@@ -96,32 +112,17 @@ void motor_4Time()
           currentTime = micros();
           //delay for step interval
           digitalWrite(HiHat_stepPin, HIGH);
-          if(Snare_Sig == 1)
-          {
-            digitalWrite(Solonoid1, LOW); //cw
-          }
+
           while(micros() - currentTime < stepInterval)
           {
             
           }
           //delayMicroseconds(1200);
           digitalWrite(HiHat_stepPin, LOW);
-          if(Snare_Sig == 1)
-          {
-            digitalWrite(Solonoid1, HIGH); //cw
-          }
+
         }
   
-        timeEndHiHat = millis();
-        while(timeEndHiHat - timeBeginHiHat < delay_val)
-        {
-          timeEndHiHat = millis();
-          if(timeEndHiHat - timeBeginHiHat == delay_val)
-          {
-           
-            break;
-          }
-        }
+
   
     
   }
@@ -146,7 +147,10 @@ void motor_4Time()
         currentTime = micros();
         //delay for step interval
         digitalWrite(Kick_stepPin, HIGH);
-        digitalWrite(Solonoid1, HIGH); //just for testing solonoid
+        if(Snare_Sig == 1)
+          {
+            digitalWrite(Solonoid1, HIGH); //cw
+          }
         while(micros() - currentTime < stepInterval)
         {
           
@@ -154,7 +158,10 @@ void motor_4Time()
         
         //delayMicroseconds(1200);
         digitalWrite(Kick_stepPin, LOW);
-        digitalWrite(Solonoid1, LOW); //just for testing solonoid
+        if(Snare_Sig == 1)
+          {
+            digitalWrite(Solonoid1, LOW); //cw
+          }
 
       }
       
@@ -182,14 +189,14 @@ void motor_4Time()
         currentTime = micros();
         //delay for step interval
         digitalWrite(Kick_stepPin, HIGH);
-        digitalWrite(Solonoid1, HIGH); //just for testing solonoid
+        
         while(micros() - currentTime < stepInterval)
         {
           
         }
         //delayMicroseconds(1200);
         digitalWrite(Kick_stepPin, LOW);
-        digitalWrite(Solonoid1, LOW); //just for testing solonoid
+        
 
       }
 
@@ -230,7 +237,7 @@ void motor_4Time()
         digitalWrite(Kick_stepPin, LOW);
         if(Snare_Sig == 1)
         {
-             digitalWrite(Solonoid1, LOW); //cw
+             digitalWrite(Solonoid1, HIGH); //cw
         }        
         while(micros() - currentTime < stepInterval)
         {
@@ -242,7 +249,7 @@ void motor_4Time()
         digitalWrite(Kick_stepPin, HIGH);
         if(Snare_Sig == 1)
         {
-           digitalWrite(Solonoid1, HIGH); //cw
+           digitalWrite(Solonoid1, LOW); //cw
         }
       }
       
@@ -271,6 +278,7 @@ void motor_4Time()
         //delay for step interval
         digitalWrite(HiHat_stepPin, HIGH);
         digitalWrite(Kick_stepPin, LOW);
+
         while(micros() - currentTime < stepInterval)
         {
           
@@ -278,6 +286,7 @@ void motor_4Time()
         //delayMicroseconds(1200);
         digitalWrite(HiHat_stepPin, LOW);
         digitalWrite(Kick_stepPin, HIGH);
+
       }
 
       timeEndHiHat = millis();
@@ -293,6 +302,63 @@ void motor_4Time()
 
   }
 
+    if(Snare_Sig == 1 && Kick_Sig == 0 && Hi_Hat_Sig == 0)
+  {
+     timeBeginSnare = millis();
+      //  Serial.print("Beat 1");
+       
+      timeEndSnare = millis();
+          while(timeEndSnare - timeBeginSnare < delay_val)
+        {
+          Serial.print("inside the condition!!!!\n");
+          Serial.print("Time begin snare");
+          Serial.print(timeBeginSnare);
+          Serial.print("\n");
+          Serial.print("Time end snare");
+          Serial.print(timeEndSnare);
+          Serial.print("\n");
+          timeEndSnare = millis();
+          if(timeEndSnare - timeBeginSnare == delay_val)
+          {
+           
+            break;
+          }
+        }
+        currentTime = millis();
+        timeBeginSnare = millis();
+        digitalWrite(Solonoid1, HIGH); //cw
 
+        
+        while(millis() - currentTime < 50)
+        {   
+ //           Serial.print("micros");
+//            Serial.print(micros()); 
+//            Serial.print("\n");
+//            Serial.print("Current time");
+//            Serial.print(currentTime); 
+//            Serial.print("\n");
+        }
+
+      
+     
+        digitalWrite(Solonoid1, LOW); //cw
+        
+        //timeBeginSnare = millis();
+        timeEndSnare = millis();
+        while(timeEndSnare - timeBeginSnare < delay_val)
+        {
+          timeEndSnare = millis();
+          if(timeEndSnare - timeBeginSnare == delay_val)
+          {
+           
+            break;
+          }
+        }
+
+
+
+
+
+}
 
 }
