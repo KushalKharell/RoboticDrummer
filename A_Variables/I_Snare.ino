@@ -8,14 +8,14 @@ void snare()
       //  Serial.print("Beat 1");
       //  Serial.print("\n\n");
         
-        digitalWrite(Solonoid1, HIGH); //cw
+        digitalWrite(Solenoid1, HIGH); //cw
 
         while(micros() - currentTime < stepInterval)
         { 
             
         }
      
-        digitalWrite(Solonoid1, LOW); //cw
+        digitalWrite(Solenoid1, LOW); //cw
         
         
         timeEndSnare = millis();

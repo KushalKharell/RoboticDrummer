@@ -127,7 +127,7 @@ void updateEncoder(){
         if ((digitalRead(DT) == currentStateCLK) || (digitalRead(DT) != currentStateCLK))
         {
           Snare_Sig = !Snare_Sig; //invert Drums_Sig
-          digitalWrite(Solonoid1, LOW); //cw
+          digitalWrite(Solenoid1, LOW); //cw
   
         }
 

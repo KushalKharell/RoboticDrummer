@@ -21,7 +21,7 @@
 #define Kick_stepPin 50
 
 //solonoid pin
-#define Solonoid1 46
+#define Solenoid1 46
 
 //step size for motors
 //#define stepsPerRevolution 800 //for 120bpm and 1600 microsteps
@@ -53,9 +53,6 @@ unsigned long timeEndSnare; //holds time at end of LCD_Menu()
 
 unsigned long currentTime;
 unsigned long stepInterval = 1200;
-
-//testing var
-int var = 0; 
 
 //for rotary encoder - in updateEncoder() function
 int rotaryCounter = 0; //for keeping track of rotary position

@@ -28,7 +28,7 @@ void setup() {
   pinMode(Kick_dirPinPos, OUTPUT);
   pinMode(Kick_dirPinNeg, OUTPUT);
 
-  pinMode(Solonoid1, OUTPUT);
+  pinMode(Solenoid1, OUTPUT);
 
   //Setup Serial Monitor
   Serial.begin(9600);

@@ -26,14 +26,9 @@ void motor_3Time()
               break;
             }
           }
-         
           
-    
           for(int j = 0; j < 2; j++)
           {
-        //    Serial.print("Beat ");
-         //   Serial.print(j+2);
-        //    Serial.print("\n\n");
             timeBeginHiHat = millis();
             digitalWrite(HiHat_dirPinPos, LOW); //cw
           // Spin the stepper motor 1 revolution quickly:
@@ -42,13 +37,21 @@ void motor_3Time()
               currentTime = micros();
               //delay for step interval
               digitalWrite(HiHat_stepPin, HIGH);
+              if(Snare_Sig == 1)
+              {
+                digitalWrite(Solenoid1, HIGH); //cw
+              }
               while(micros() - currentTime < stepInterval)
               {
                 
               }
               
               digitalWrite(HiHat_stepPin, LOW);
-  
+              if(Snare_Sig == 1)
+              {
+                digitalWrite(Solenoid1, LOW); //cw                
+              }
+
             }
     
           timeEndHiHat = millis();
@@ -63,8 +66,7 @@ void motor_3Time()
           }
       
             timeBeginHiHat = millis();
-            digitalWrite(HiHat_dirPinPos, HIGH); //cw
-      
+              digitalWrite(HiHat_dirPinPos, HIGH); //cw
       //    // Spin the stepper motor 1 revolution quickly:
       
             for (int i = 0; i < stepsPerRevolution; i++) 
@@ -73,20 +75,13 @@ void motor_3Time()
               currentTime = micros();
               //delay for step interval
               digitalWrite(HiHat_stepPin, HIGH);
-              if(Snare_Sig == 1)
-              {
-                digitalWrite(Solonoid1, LOW); //cw
-              }              
+          
               while(micros() - currentTime < stepInterval)
               {
                 
               }
               //delayMicroseconds(1200);
               digitalWrite(HiHat_stepPin, LOW);
-              if(Snare_Sig == 1)
-              {
-                digitalWrite(Solonoid1, HIGH); //cw
-              }      
             }
       
             timeEndHiHat = millis();
@@ -142,7 +137,7 @@ void motor_3Time()
             }
           }
          
-          timeBeginKick = millis();
+            timeBeginKick = millis();
             digitalWrite(Kick_dirPinPos, HIGH); //ccw
           // Spin the stepper motor 1 revolution quickly:
             for (int i = 0; i < stepsPerRevolution; i++) 
@@ -158,19 +153,60 @@ void motor_3Time()
               digitalWrite(Kick_stepPin, LOW);
       
             }
-    
 
-          timeEndKick = millis();
-          while(timeEndKick - timeBeginKick < 2.5*delay_val)
+
+
+
+          if(Snare_Sig == 1)
           {
-            timeEndKick = millis();
-            if(timeEndKick - timeBeginKick >= 2.5*delay_val)
-            {
+              timeBeginHiHat = millis();
+            // Spin the stepper motor 1 revolution quickly:
+
+                currentTime = micros();
+                //delay for step interval
+
+                  digitalWrite(Solenoid1, HIGH); //cw
+                
+                  while(micros() - currentTime < stepInterval)
+                  {
+                    Serial.print("TEST");
+                    Serial.print("TEST");
+                    Serial.print("TEST");Serial.print("TEST");Serial.print("TEST");Serial.print("TEST");
+                  }
+                  
+
+                  digitalWrite(Solenoid1, LOW); //cw          
+
+                
+
+          
+          /*
+              while(timeEndHiHat - timeBeginHiHat < delay_val/2)
+              {
+                timeEndHiHat = millis();
+                if(timeEndHiHat - timeBeginHiHat == delay_val/2)
+                {
+                 
+                  break;
+                }
+              }*/
+              
+            
              
-              break;
+          }
+          
+            timeEndKick = millis();
+            while(timeEndKick - timeBeginKick < 2.5*delay_val)
+            {
+              timeEndKick = millis();
+              if(timeEndKick - timeBeginKick >= 2.5*delay_val)
+              {
+               
+                break;
+              }
             }
           }
-         }
+         
       }
 
 
@@ -242,9 +278,6 @@ void motor_3Time()
           
         for(int j = 0; j < 2; j++)
           {
-        //    Serial.print("Beat ");
-         //   Serial.print(j+2);
-        //    Serial.print("\n\n");
             timeBeginHiHat = millis();
             digitalWrite(HiHat_dirPinPos, LOW); //cw
           // Spin the stepper motor 1 revolution quickly:
@@ -252,13 +285,21 @@ void motor_3Time()
             {
               currentTime = micros();
               //delay for step interval
-              digitalWrite(HiHat_stepPin, HIGH);            
+              digitalWrite(HiHat_stepPin, HIGH);    
+              if(Snare_Sig == 1)
+              {
+                digitalWrite(Solenoid1, HIGH);        
+              }
               while(micros() - currentTime < stepInterval)
               {
                 
               }
               
               digitalWrite(HiHat_stepPin, LOW);  
+              if(Snare_Sig == 1)
+              {
+                digitalWrite(Solenoid1, LOW);        
+              }
             }
     
           timeEndHiHat = millis();
@@ -283,20 +324,14 @@ void motor_3Time()
               currentTime = micros();
               //delay for step interval
               digitalWrite(HiHat_stepPin, HIGH);
-              if(Snare_Sig == 1)
-              {
-                digitalWrite(Solonoid1, LOW); //cw
-              }                
+                     
               while(micros() - currentTime < stepInterval)
               {
                 
               }
               //delayMicroseconds(1200);
               digitalWrite(HiHat_stepPin, LOW);
-              if(Snare_Sig == 1)
-              {
-                digitalWrite(Solonoid1, HIGH); //cw
-              }        
+ 
             }
       
             timeEndHiHat = millis();
@@ -314,7 +349,7 @@ void motor_3Time()
   }
           
   
-  }
+}
 
 
 
