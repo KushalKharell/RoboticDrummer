@@ -98,7 +98,7 @@ void motor_4Time()
       Serial.print("Beat 1");
       Serial.print("\n\n");
       
-      digitalWrite(Kick_dirPinPos, LOW); //cw
+      digitalWrite(Kick_dirPinPos, HIGH); //cw
       
 
     // Spin the stepper motor 1 revolution quickly:
@@ -139,7 +139,7 @@ void motor_4Time()
       Serial.print("Beat 2");
       Serial.print("\n\n");
       timeBeginKick = millis();
-      digitalWrite(Kick_dirPinPos, HIGH); //cw
+      digitalWrite(Kick_dirPinPos, LOW); //cw
 
 //    // Spin the stepper motor 1 revolution quickly:
 

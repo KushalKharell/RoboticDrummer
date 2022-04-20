@@ -8,7 +8,7 @@ void motor_3Time()
   {
     if(timeSig == 2 || (timeSig == 1 && Tempo <= 82))
     {
-            if(hiHatFlag == 1)
+      if(hiHatFlag == 1)
       {
         setHiHat();
         hiHatFlag = 0;
@@ -116,7 +116,7 @@ void motor_3Time()
        Serial.print("\n\n");
        
             timeBeginKick = millis();
-            digitalWrite(Kick_dirPinPos, LOW); //cw
+            digitalWrite(Kick_dirPinPos, HIGH); //cw
           // Spin the stepper motor 1 revolution quickly:
             for (int i = 0; i < stepsPerRevolution; i++) 
             {
@@ -144,7 +144,7 @@ void motor_3Time()
           }
          
             timeBeginKick = millis();
-            digitalWrite(Kick_dirPinPos, HIGH); //ccw
+            digitalWrite(Kick_dirPinPos, LOW); //ccw
           // Spin the stepper motor 1 revolution quickly:
             for (int i = 0; i < stepsPerRevolution; i++) 
             {
@@ -224,7 +224,7 @@ void motor_3Time()
        Serial.print("Delay val in seconds: ");
        Serial.print(delay_val);
        Serial.print("\n\n");
-             if(hiHatFlag == 1)
+      if(hiHatFlag == 1)
       {
         setHiHat();
         hiHatFlag = 0;
