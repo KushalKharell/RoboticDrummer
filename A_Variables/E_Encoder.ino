@@ -96,8 +96,18 @@ void updateEncoder(){
       //if encoder is rotated CCW or CW, change state of Hi_Hat_Sig
       if ((digitalRead(DT) == currentStateCLK) || (digitalRead(DT) != currentStateCLK))
       {
-        Hi_Hat_Sig = !Hi_Hat_Sig; //invert Hi_Hat Sig
+       // Hi_Hat_Sig = !Hi_Hat_Sig; //invert Hi_Hat Sig
 
+        if(Hi_Hat_Sig == 0)
+        {
+          Hi_Hat_Sig = 1;
+          hiHatFlag = 1;
+        }
+
+        else if(Hi_Hat_Sig == 1)
+         {
+            Hi_Hat_Sig = 0;
+         }
       }
 
     }

@@ -25,7 +25,7 @@
 
 //step size for motors
 //#define stepsPerRevolution 800 //for 120bpm and 1600 microsteps
-#define stepsPerRevolution 100 //
+#define stepsPerRevolution 200 //
 
 //sda = 20, scl = 21 for mega board i2c module
 LiquidCrystal_I2C lcd(0x27, 20, 4); //20x4 display, defining the lcd
@@ -72,3 +72,5 @@ int beatsPerMeasure = 4; //starting beats per measure
 int count = 0; //counter for number of beats played in a measure
 String timeSigValues[4] = {"4/4", "6/8", "3/4", "2/4"}; //time signature values - might be needed for lcd
 int timeSig = 0; //starting time signature case 
+
+int hiHatFlag = 0;

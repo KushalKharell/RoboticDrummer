@@ -8,6 +8,11 @@ void motor_3Time()
   {
     if(timeSig == 2 || (timeSig == 1 && Tempo <= 82))
     {
+            if(hiHatFlag == 1)
+      {
+        setHiHat();
+        hiHatFlag = 0;
+      }
        Serial.print("Delay val in seconds: ");
        Serial.print(delay_val);
        Serial.print("\n\n");
@@ -95,6 +100,7 @@ void motor_3Time()
               }
             }
           }
+          
       }
   }
 
@@ -218,6 +224,11 @@ void motor_3Time()
        Serial.print("Delay val in seconds: ");
        Serial.print(delay_val);
        Serial.print("\n\n");
+             if(hiHatFlag == 1)
+      {
+        setHiHat();
+        hiHatFlag = 0;
+      }
        
             timeBeginKick = millis();
             digitalWrite(Kick_dirPinPos, LOW); //cw

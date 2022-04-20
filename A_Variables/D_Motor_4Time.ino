@@ -7,6 +7,12 @@ void motor_4Time()
   //if the hi-hat selection is set to "ON" (Hi_Hat_Sig is 1), turn motor on
   if(Hi_Hat_Sig == 1 && Kick_Sig == 0)
   {
+      if(hiHatFlag == 1)
+      {
+        setHiHat();
+        hiHatFlag = 0;
+      }
+    
         timeEndHiHat = millis();
         while(timeEndHiHat - timeBeginHiHat < delay_val)
         {
@@ -173,6 +179,11 @@ void motor_4Time()
    Serial.print("Delay val in seconds: ");
    Serial.print(delay_val);
    Serial.print("\n\n");
+      if(hiHatFlag == 1)
+      {
+        setHiHat();
+        hiHatFlag = 0;
+      }
    
    timeBeginHiHat = millis();
      // Serial.print("Beat 1");
@@ -262,7 +273,7 @@ void motor_4Time()
       //  Serial.print("Beat 1");
        
       timeEndSnare = millis();
-          while(timeEndSnare - timeBeginSnare < delay_val)
+        while(timeEndSnare - timeBeginSnare < delay_val)
         {
           Serial.print("inside the condition!!!!\n");
           Serial.print("Time begin snare");
