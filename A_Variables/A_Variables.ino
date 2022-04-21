@@ -25,7 +25,7 @@
 
 //step size for motors
 //#define stepsPerRevolution 800 //for 120bpm and 1600 microsteps
-#define stepsPerRevolution 200 //
+#define stepsPerRevolution 100 //
 
 //sda = 20, scl = 21 for mega board i2c module
 LiquidCrystal_I2C lcd(0x27, 20, 4); //20x4 display, defining the lcd

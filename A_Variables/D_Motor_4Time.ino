@@ -33,7 +33,7 @@ void motor_4Time()
         
         digitalWrite(HiHat_dirPinPos, LOW); //cw
       // Spin the stepper motor 1 revolution quickly:
-        for (int i = 0; i < stepsPerRevolution; i++) 
+        for (int i = 0; i < 90; i++) 
         {
           currentTime = micros();
           //delay for step interval
@@ -70,7 +70,7 @@ void motor_4Time()
         digitalWrite(HiHat_dirPinPos, HIGH); //cw
   //    // Spin the stepper motor 1 revolution quickly:
   
-        for (int i = 0; i < stepsPerRevolution; i++) 
+        for (int i = 0; i < 100; i++) 
         {
           // These lines result in 1 step:
           currentTime = micros();
@@ -102,7 +102,7 @@ void motor_4Time()
       
 
     // Spin the stepper motor 1 revolution quickly:
-      for (int i = 0; i < stepsPerRevolution; i++) 
+      for (int i = 0; i < 90; i++) 
       {
         currentTime = micros();
         //delay for step interval
@@ -143,7 +143,7 @@ void motor_4Time()
 
 //    // Spin the stepper motor 1 revolution quickly:
 
-      for (int i = 0; i < stepsPerRevolution; i++) 
+      for (int i = 0; i < 100; i++) 
       {
         // These lines result in 1 step:
         currentTime = micros();
@@ -194,7 +194,7 @@ void motor_4Time()
       //digitalWrite(Solonoid1, HIGH); //cw
 
     // Spin the stepper motor 1 revolution quickly:
-      for (int i = 0; i < stepsPerRevolution; i++) 
+      for (int i = 0; i < 90; i++) 
       {
         currentTime = micros();
         //delay for step interval
@@ -217,6 +217,8 @@ void motor_4Time()
            digitalWrite(Solenoid1, LOW); //cw
         }
       }
+
+      
       
       timeEndHiHat = millis();
       while(timeEndHiHat - timeBeginHiHat < delay_val)
@@ -236,7 +238,7 @@ void motor_4Time()
       digitalWrite(Kick_dirPinPos, LOW);
 //    // Spin the stepper motor 1 revolution quickly:
 
-      for (int i = 0; i < stepsPerRevolution; i++) 
+      for (int i = 0; i < 100; i++) 
       {
         // These lines result in 1 step:
         currentTime = micros();
