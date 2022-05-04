@@ -1,18 +1,26 @@
 
 
 //interrupt function for encoder
+//NOTE: sometimes the rotary encoder does not update the LCD properly
+//      It is sometimes late to change, and sometimes it waits to update until the button is pressed
+//      Further testing is needed to determine if it is an LCD issue or encoder issue
+
 void updateEncoder(){
   // Read the current state of CLK
   currentStateCLK = digitalRead(CLK);
 
-  // If last and current state of CLK are different, then pulse occurred
-  // React to only 1 state change to avoid double count
+  //If last and current state of CLK are different, then pulse occurred
+  //React to only 1 state change to avoid double count
   if (currentStateCLK != lastStateCLK  && currentStateCLK == 1)
   {
     
-    // If the DT state is different than the CLK state then
-    // the encoder is rotating CCW so decrement
+    //If the DT state is different than the CLK state then
+    //the encoder is rotating CCW so decrement
+    
     //Tempo selection
+    //NOTE: sometimes when all the motors/solenoids are off, and the encoder tries to increase the tempo (CW movement), it will actually 
+    //      decrease it.  Further testing is needed to determine why this issue occurs. It is not always consistent, either, so it's possible 
+    //      it is a hardware issue.
     if(Fun_called == 1)
     {
       //If encoder is rotated counterclockwise and not at low limit of 50 bpm
@@ -43,6 +51,8 @@ void updateEncoder(){
   
 
     //if on Time Signature selection
+    //NOTE: sometimes a time signature is skipped when using the encoder to select a time signature
+    //      Further testing is needed to determine why this is the case. This mainly happens when turning the encoder CW
     else if(Fun_called == 2)
     {
 
@@ -54,7 +64,7 @@ void updateEncoder(){
           currentDir ="CCW";
           timeSig -= 1; //decrease timeSig value by 1
           //check that timeSig is not a negative number. If so, go back to last element in timeSigValues array
-          if(timeSig < 0) //so far putting the "=" sign gets you 2/4, but skips the 3/4 completely in CCW
+          if(timeSig < 0) 
           {
             timeSig = 3;
           }
@@ -62,14 +72,10 @@ void updateEncoder(){
         
       } 
       
-      //if encoder is rotated counterclockwise, round robin backwards through time sig options
-      //for some reason it's not updating correctly on the LCD or timeSig when moving CW - check this
+      //if encoder is rotated CW ckwise, round robin backwards through time sig options
+      //for some reason it's not updating correctly on the LCD or timeSig when moving this direction
       else if(digitalRead(DT) != currentStateCLK)
       {     
-         // timeSig = 0;
-        // Encoder is rotating CW so increment
-            
-          //int flag =rotaryCounter; 
           rotaryCounter++; //increase rotaryCounter for CW direction
           currentDir ="CW";
 
@@ -88,7 +94,7 @@ void updateEncoder(){
       
     }
 
-  //if on Hi-Hat selection
+  //if on Hi-Hat ON/OFF selection
     else if(Fun_called == 3)
     {
 
@@ -112,14 +118,9 @@ void updateEncoder(){
 
     }
 
-    //if on Kick selection
-
-
+    //if on Kick ON/OFF selection
       else if(Fun_called == 4)
       {
-
-
-
           //if encoder is rotated CCW or CW, change state of Drums_Sig
         if ((digitalRead(DT) == currentStateCLK) || (digitalRead(DT) != currentStateCLK))
         {
@@ -127,12 +128,11 @@ void updateEncoder(){
   
         }
       }
-      //if on snare selection
-      else if(Fun_called == 5)
-      {
-
 
       
+      //if on snare ON/OFF selection
+      else if(Fun_called == 5)
+      {
         //if encoder is rotated CCW or CW, change state of Drums_Sig
         if ((digitalRead(DT) == currentStateCLK) || (digitalRead(DT) != currentStateCLK))
         {
@@ -171,6 +171,6 @@ void updateEncoder(){
   delay(1);
   */
 
-  lcdChange = true;
+  lcdChange = true; //if encoder is turned, set lcdChange to true so LCD can be updated
   
 }

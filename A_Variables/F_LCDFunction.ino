@@ -14,9 +14,10 @@ void LCD_Menu()
     lcd.print(" ");
   }
   lcd.print(Tempo);
-  
+
+  //if the selector is on tempo
   if(Fun_called == 1)
-  { //if the selector is on tempo
+  { 
       lcd.setCursor(4,1);           
       lcd.print(Curr_Selection);
       lcd.setCursor(4,3);           
@@ -31,9 +32,10 @@ void LCD_Menu()
   lcd.print("Time Sig");
   lcd.setCursor(0,3);           
   lcd.print(timeSigValues[timeSig]);
-  
+
+  //if the selector is on time sig
     if(Fun_called == 2)
-    { //if the selector is on time sig
+    { 
 
       lcd.setCursor(4,1);           
       lcd.print("  ");
@@ -44,8 +46,8 @@ void LCD_Menu()
       lcd.setCursor(16,3);           
       lcd.print("  ");
     }
-//right side 
 
+//right side 
   if(Hi_Hat_Sig == 1)
   {
       Hi_Hat_Status = "ON "; 
@@ -56,7 +58,6 @@ void LCD_Menu()
       Hi_Hat_Status = "OFF"; 
     }
 
-//commented out because this will be changed later
   if(Kick_Sig == 1)
   {
       Kick_Status = "ON "; 
@@ -71,10 +72,10 @@ void LCD_Menu()
   lcd.print("Hi-Hat");
   lcd.setCursor(12,1);           
   lcd.print(Hi_Hat_Status);
-      if(Fun_called == 3)
-      { //if the selector is on tempo
 
-
+  //if the selector is on hi-hat ON/OFF
+    if(Fun_called == 3)
+    { 
       lcd.setCursor(4,1);           
       lcd.print("  ");
       lcd.setCursor(4,3);           
@@ -85,14 +86,14 @@ void LCD_Menu()
       lcd.print("  ");
     }
   
-  //commented out because this will be changed later
   lcd.setCursor(12,2);           
   lcd.print("Kick");
   lcd.setCursor(12,3);           
   lcd.print(Kick_Status);
-  
+
+  //if the selector is on kick ON/OFF
    if(Fun_called == 4)
-   { //if the selector is on tempo
+   { 
       lcd.setCursor(4,1);           
       lcd.print("  ");
       lcd.setCursor(4,3);           
@@ -105,9 +106,9 @@ void LCD_Menu()
   
       
   //next page
-  //snare
+  ////if the selector is on snare ON/OFF   
    if(Fun_called == 5)
-   { //if the selector is on tempo   
+   { 
       lcd.clear();
       lcd.setCursor(0,0);           
       lcd.print("Snare");

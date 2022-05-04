@@ -1,18 +1,19 @@
-//interrupt function for time signature button - need to debounce this because sometimes it skips beatsPerMeasure
+//interrupt function for time signature button 
 void button()
 {
+  //if button is pressed, increment Fun_called 
   if (digitalRead(buttonPin) == HIGH)
   {
     if (millis() - lastButtonPressB > 50) 
     {
       
       Fun_called++;
-      Serial.print("FunCalled: ");
+     /*Serial.print("FunCalled: ");
       Serial.print(Fun_called);
       Serial.print("\n");
       Serial.print("ButtonPin: ");
       Serial.print(digitalRead(buttonPin));
-      Serial.print("\n");
+      Serial.print("\n");*/
 
     }
 
@@ -27,6 +28,6 @@ void button()
   }
 
   
-  buttonUpdate = true;
+  buttonUpdate = true; //if button is pressed, set buttonUpdate to true so LCD can be updated
 
 }

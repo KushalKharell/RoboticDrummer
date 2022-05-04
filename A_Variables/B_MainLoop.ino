@@ -13,11 +13,6 @@ void setup() {
   pinMode(LED_Beat1, OUTPUT);
   pinMode(LED_Others, OUTPUT);
 
-  //Set up old motors
-  /*
-  pinMode(stepPin, OUTPUT);
-  pinMode(dirPin, OUTPUT);
-*/
   //hi hat motor setup
   pinMode(HiHat_stepPin, OUTPUT);
   pinMode(HiHat_dirPinPos, OUTPUT);
@@ -77,9 +72,8 @@ void setup() {
 void loop() 
 {   
 
-  //added a timer to figure out how long the LCD_Menu() takes to run for tempo calculation
 
-  //-----------------------------------------------
+  //check if lcd changed and call LCD_Menu() if so
   if(lcdChange == true || buttonUpdate == true)
   {
     LCD_Menu();

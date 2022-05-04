@@ -24,8 +24,7 @@
 #define Solenoid1 46
 
 //step size for motors
-//#define stepsPerRevolution 800 //for 120bpm and 1600 microsteps
-#define stepsPerRevolution 100 //
+#define stepsPerRevolution 100 //half of the motor's full step size
 
 //sda = 20, scl = 21 for mega board i2c module
 LiquidCrystal_I2C lcd(0x27, 20, 4); //20x4 display, defining the lcd
@@ -33,13 +32,13 @@ bool Hi_Hat_Sig = 0; //signal for hi hat to be turned on or off. it is off initi
 int Kick_Sig = 0; //Other drums with actuators are turned OFF initially
 String Hi_Hat_Status = "OFF"; //string for lcd
 String Kick_Status = "OFF"; //string for lcd
-int Snare_Sig = 0;
-String Snare_Status = "OFF";
-int Fun_called = 1; //keeping track of the lcd calls
+int Snare_Sig = 0; //signal for snare to be turned on/off
+String Snare_Status = "OFF"; //string for lcd
+int Fun_called = 1; //keeping track of the which option is selected on LCD (tempo = 1, time sig = 2, hi-hat = 3, kick = 4, snare = 5)
 String encdir ="";
 String Curr_Selection = "<-";
-bool lcdChange = false; 
-bool buttonUpdate = false;
+bool lcdChange = false; //to check if the lcd needs updated
+bool buttonUpdate = false; //to check if button was pressed
 
 //timers - to eliminate use of delay() function
 unsigned long timeBeginHiHat; //holds time at start of LCD_Menu()
@@ -51,8 +50,8 @@ unsigned long timeEndKick; //holds time at end of LCD_Menu()
 unsigned long timeBeginSnare; //holds time at start of LCD_Menu()
 unsigned long timeEndSnare; //holds time at end of LCD_Menu()
 
-unsigned long currentTime;
-unsigned long stepInterval = 1200;
+unsigned long currentTime; //to hold the current time 
+unsigned long stepInterval = 1200; //number of microseconds to delay between steps 
 
 //for rotary encoder - in updateEncoder() function
 int rotaryCounter = 0; //for keeping track of rotary position
